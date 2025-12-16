@@ -1,0 +1,25 @@
+{
+  "name": "appointment-nextjs-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001 -H 127.0.0.1",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "@prisma/client": "^5.7.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.7.0"
+  }
+}
