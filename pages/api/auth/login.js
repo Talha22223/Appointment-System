@@ -6,7 +6,7 @@ import { applyCors } from '../../../lib/cors'
 export default async function handler(req, res) {
   // Handle CORS
   if (applyCors(req, res)) return
-  
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' })
   }
