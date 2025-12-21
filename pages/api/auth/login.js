@@ -17,7 +17,9 @@ export default async function handler(req, res) {
     const { email, password } = req.body
 
     if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required' })
+      return res.status(400).json({
+        message: 'Email and password are required'
+      })
     }
 
     const user = await User.findOne({ email: email.toLowerCase() })
@@ -36,7 +38,7 @@ export default async function handler(req, res) {
       { expiresIn: '1d' }
     )
 
-    res.json({
+    res.status(200).json({
       token,
       user: {
         id: user.id,
