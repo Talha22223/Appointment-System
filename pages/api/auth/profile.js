@@ -16,14 +16,18 @@ export default async function handler(req, res) {
   const token = authHeader?.split(' ')[1]
 
   if (!token) {
-    return res.status(401).json({ message: 'No authentication token, access denied' })
+    return res.status(401).json({
+      message: 'No authentication token, access denied'
+    })
   }
 
   try {
     const verified = jwt.verify(token, process.env.JWT_SECRET)
     req.user = verified
   } catch (error) {
-    return res.status(401).json({ message: 'Token verification failed' })
+    return res.status(401).json({
+      message: 'Token verification failed'
+    })
   }
 
   await connectDB()
@@ -50,8 +54,11 @@ export default async function handler(req, res) {
       return res.status(404).json({ message: 'User not found' })
     }
 
-    // Add _id for backward compatibility
-    res.status(200).json({ ...user, _id: user.id })
+    // Backward compatibility
+    res.status(200).json({
+      ...user,
+      _id: user.id
+    })
   } catch (error) {
     res.status(500).json({ message: 'Server error' })
   }
