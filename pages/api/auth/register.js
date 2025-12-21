@@ -16,7 +16,10 @@ export default async function handler(req, res) {
   try {
     const { name, email, password, role } = req.body
 
-    const existingUser = await User.findOne({ email: email.toLowerCase() })
+    const existingUser = await User.findOne({
+      email: email.toLowerCase()
+    })
+
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' })
     }
@@ -47,6 +50,10 @@ export default async function handler(req, res) {
     })
   } catch (error) {
     console.error('Registration error:', error)
-    res.status(500).json({ message: 'Server error', error: error.message })
+
+    res.status(500).json({
+      message: 'Server error',
+      error: error.message
+    })
   }
 }
